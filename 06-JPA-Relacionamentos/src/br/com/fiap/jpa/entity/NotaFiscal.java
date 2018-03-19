@@ -1,7 +1,9 @@
 package br.com.fiap.jpa.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +28,7 @@ public class NotaFiscal {
 	@Column(name="nr_cnpj")
 	private String cnpj;
 	
-	@OneToOne
+	@OneToOne(fetch=FetchType.LAZY ,cascade= {CascadeType.REMOVE,CascadeType.PERSIST})
 	@JoinColumn(name="cd_pedido")
 	private Pedido pedido;
 
