@@ -1,5 +1,8 @@
 package br.com.fiap.jpa.teste;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -7,6 +10,7 @@ import br.com.fiap.jpa.dao.NotaFiscalDAO;
 import br.com.fiap.jpa.dao.PedidoDAO;
 import br.com.fiap.jpa.dao.impl.NotaFiscalDAOImpl;
 import br.com.fiap.jpa.dao.impl.PedidoDAOImpl;
+import br.com.fiap.jpa.entity.Imposto;
 import br.com.fiap.jpa.entity.ItemPedido;
 import br.com.fiap.jpa.entity.NotaFiscal;
 import br.com.fiap.jpa.entity.Pedido;
@@ -38,6 +42,17 @@ public class CadastroTeste {
 		
 		pedido.adicionarItem(item1);
 		pedido.adicionarItem(item2);
+		
+		Imposto imposto1 = new Imposto(0.08,"ICMS",null);
+		Imposto imposto2 = new Imposto(0.06,"IOF",null);
+		
+		//Cria uma lista de impostos
+		List<Imposto> impostos = new ArrayList<>();
+		impostos.add(imposto1);
+		impostos.add(imposto2);
+		
+		//Adiciona os impostos na nota
+		nota.setImpostos(impostos);
 		
 		try {
 			//pedidoDao.create(pedido);

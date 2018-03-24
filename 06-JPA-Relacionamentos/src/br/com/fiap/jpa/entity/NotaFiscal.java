@@ -1,5 +1,7 @@
 package br.com.fiap.jpa.entity;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -31,6 +36,12 @@ public class NotaFiscal {
 	@OneToOne(fetch=FetchType.LAZY ,cascade= {CascadeType.REMOVE,CascadeType.PERSIST})
 	@JoinColumn(name="cd_pedido")
 	private Pedido pedido;
+	
+	@ManyToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="T_IMPOSTO_NOTA",
+		joinColumns=@JoinColumn(name="cd_nota"),
+		inverseJoinColumns=@JoinColumn(name="cd_imposto"))
+	private List<Imposto> impostos;
 
 	public NotaFiscal() {
 		super();
@@ -73,6 +84,14 @@ public class NotaFiscal {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+
+	public List<Imposto> getImpostos() {
+		return impostos;
+	}
+
+	public void setImpostos(List<Imposto> impostos) {
+		this.impostos = impostos;
 	}
 	
 }
