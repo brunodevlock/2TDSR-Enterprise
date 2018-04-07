@@ -1,5 +1,6 @@
 package br.com.fiap.dao;
 
+import java.util.List;
 import br.com.fiap.exception.DBException;
 import br.com.fiap.exception.IdNotFoundException;
 
@@ -11,4 +12,9 @@ public interface GenericDAO<T,K> {
 	T pesquisar(K codigo);
 	void salvar() throws DBException;
 	
+	List<T> listar();
+	
 }
+
+
+
