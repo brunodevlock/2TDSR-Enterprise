@@ -1,6 +1,7 @@
 package br.com.fiap.dao.impl;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -65,6 +66,8 @@ public class GenericDAOImpl<T,K> implements GenericDAO<T, K>{
 		//Criar a query
 		TypedQuery<T> query = em.createQuery("from " 
 							+ classe.getName(), classe);
+		//Configurar o máximo de resultado
+		query.setMaxResults(5);
 		//Executar a query
 		return query.getResultList();
 	}

@@ -1,5 +1,8 @@
 package br.com.fiap.view;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -69,6 +72,35 @@ public class ConsoleView {
 		System.out.println("BUSCAR CLIENTE POR DIAS RESERVA");
 		for (Cliente cliente : clientes) {
 			System.out.println(cliente.getNome());
+		}
+		
+		System.out.println("BUSCAR PACOTES POR DATAS");
+		Calendar inicio = 
+				new GregorianCalendar(2015,Calendar.MAY,1);
+		Calendar fim = 
+				new GregorianCalendar(2018,Calendar.MAY,1);
+		pacotes = pacoteDao.buscarPorDatas(inicio, fim);
+		for (Pacote pacote : pacotes) {
+			System.out.println(pacote.getDescricao());
+		}
+		
+		System.out.println("BUSCAR CLIENTE POR NOME E CIDADE");
+		clientes = clienteDao.buscar("a", "a");
+		for (Cliente cliente : clientes) {
+			System.out.println(cliente.getNome() + " - " 
+				+ cliente.getEndereco().getCidade().getNome());
+		}
+		
+		List<String> estados = new ArrayList<>();
+		estados.add("SP");
+		estados.add("PR");
+		estados.add("MG");
+		
+		clientes = clienteDao.buscarPorEstados(estados);
+		System.out.println("BUSCAR CLIENTE POR ESTADOS");
+		for (Cliente cliente : clientes) {
+			System.out.println(cliente.getNome() + " - " 
+				+ cliente.getEndereco().getCidade().getUf());
 		}
 		
 		em.close();
