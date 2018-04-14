@@ -1,5 +1,7 @@
 package br.com.fiap.dao.impl;
 
+import java.util.Calendar;
+
 import javax.persistence.EntityManager;
 
 import br.com.fiap.dao.ReservaDAO;
@@ -11,4 +13,26 @@ public class ReservaDAOImpl extends GenericDAOImpl<Reserva,Integer> implements R
 		super(entityManager);
 	}
 
+	@Override
+	public long contarQuantidadePorCliente(int idCliente) {
+		return em.createQuery("select count(r) from Reserva r "
+				+ "where r.cliente.id = :codigo",Long.class)
+				.setParameter("codigo", idCliente)
+				.getSingleResult();
+	}
+
+	@Override
+	public long contarQuantidadePorData(Calendar inicio, Calendar fim) {
+		return em.createQuery("select count(r) from Reserva r "
+				+ "where r.dataReserva between :i and :f",Long.class)
+				.setParameter("i", inicio)
+				.setParameter("f", fim)
+				.getSingleResult();
+	}
+
 }
+
+
+
+
+

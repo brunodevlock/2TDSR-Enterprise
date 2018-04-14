@@ -14,4 +14,6 @@ public interface ClienteDAO extends GenericDAO<Cliente,Integer>{
 	
 	List<Cliente> buscarPorEstados(List<String> estados);
 	
+	long contarQuantidade();
+	
 }

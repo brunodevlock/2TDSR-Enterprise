@@ -31,6 +31,12 @@ public class PacoteDAOImpl extends GenericDAOImpl<Pacote,Integer> implements Pac
 				.getResultList();
 	}
 
+	@Override
+	public double calcularMediaPreco() {
+		return em.createQuery("select avg(p.preco) from Pacote p"
+				,Double.class).getSingleResult();
+	}
+
 }
 
 

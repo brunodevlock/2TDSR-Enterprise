@@ -39,7 +39,7 @@ public class ConsoleView {
 		}
 		
 		System.out.println("BUSCAR POR NOME");
-		lista = dao.buscarPorNome("São");
+		lista = dao.buscarPorNome("são");
 		for (Cidade cidade : lista) {
 			System.out.println(cidade.getNome() + " "
 					+ cidade.getUf());
