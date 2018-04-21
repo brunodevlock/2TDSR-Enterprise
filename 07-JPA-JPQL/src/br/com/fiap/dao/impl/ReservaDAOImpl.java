@@ -1,6 +1,7 @@
 package br.com.fiap.dao.impl;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -28,6 +29,14 @@ public class ReservaDAOImpl extends GenericDAOImpl<Reserva,Integer> implements R
 				.setParameter("i", inicio)
 				.setParameter("f", fim)
 				.getSingleResult();
+	}
+
+	@Override
+	public List<Reserva> buscarPorCidade(String cidade) {
+		return em.createNamedQuery(
+			"Reserva.porCidade",Reserva.class)
+			.setParameter("churros", cidade)
+			.getResultList();
 	}
 
 }

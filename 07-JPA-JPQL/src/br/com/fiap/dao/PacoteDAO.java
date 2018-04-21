@@ -14,4 +14,16 @@ public interface PacoteDAO extends GenericDAO<Pacote,Integer>{
 	
 	double calcularMediaPreco();
 	
+	//Contar a quantidade de pacotes que possuem transporte
+	long contarPorTransporte();
+	
+	//Somar os preços dos pacotes por período de data
+	double somarPrecoPorPeriodo(Calendar inicio, Calendar fim);
+	
+	List<Pacote> buscarPorDescricao(String desc);
+	
 }
+
+
+
+
