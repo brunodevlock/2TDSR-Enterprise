@@ -34,7 +34,7 @@ public class ChaveCompostaTeste {
 			e.printStackTrace();
 		}
 		
-		Medico medico = new Medico(123, "João");
+		Medico medico = new Medico(123, "João", 10000, 123);
 		Paciente paciente = new Paciente("Maria",
 				new GregorianCalendar(1999, Calendar.JULY, 2));
 		Consulta consulta = new Consulta(medico, paciente,
